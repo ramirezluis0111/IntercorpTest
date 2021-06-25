@@ -20,11 +20,20 @@ struct ContentView: View {
             } else {
                 NavigationView {
                     if !user.userAuth && user.change {
-                        LoginFB(isShown: self.$showAction)
-                            .frame(width: 100, height: 28)
-                            .onChange(of: showAction, perform: { value in
-                                user.detectUser()
-                            })
+                        VStack {
+                            Text("Bienvenido a IntercorpTest!")
+                                .fontWeight(.medium)
+                                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                .padding()
+                                .font(.system(size: 23))
+
+                            LoginFB(isShown: self.$showAction)
+                                .frame(width: 100, height: 28)
+                                .onChange(of: showAction, perform: { value in
+                                    user.detectUser()
+                                })
+                            
+                        }
                     } else if user.userAuth && user.change {
                         Login(usr: user)
                     }
